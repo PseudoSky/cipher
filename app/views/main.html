@@ -1,0 +1,135 @@
+<div class="">
+  <!-- <h1 class="jumbotron">Cipher!</h1> -->
+      <md-toolbar class="">
+        <div class="md-toolbar-tools">
+          <h2 class="md-flex">{{settings.algorithm}} {{settings.nbits}} bit.</h2>
+        </div>
+      </md-toolbar>
+    <form class="md-whiteframe-8dp" >
+      <md-content layout="row" flex="100" class="pup" layout-padding layout-align="space-around start">
+
+
+          <div layout="column"  class="pup pad right-divide" flex="55">
+            <div layout layout="row">
+              <md-input-container flex="40">
+                <label class="md-primary md-body-1">Algorithm</label>
+                <md-select ng-model="settings.algorithm">
+                  <md-optgroup label="Communication (Key Exchange)">
+                    <md-option value="RSA" class="md-primary">RSA</md-option>
+                    <md-option value="AES" class="md-primary">AES</md-option>
+                    <md-option value="SHA">SHA</md-option>
+                    <md-option value="Rabbit">Rabbit</md-option>
+                    <md-option value="RC4">RC4</md-option>
+                  </md-optgroup>
+                  <md-optgroup label="Basic">
+                    <md-option value="HMAC" class="md-primary">HMAC</md-option>
+                    <md-option value="DES">DES</md-option>
+                    <md-option value="PBKDF2">PBKDF2</md-option>
+                    <md-option value="MD5">MD5</md-option>
+                  </md-optgroup>
+
+                </md-select>
+              </md-input-container>
+
+
+              <md-input-container flex="60">
+                <label class="md-body-1">Strength (Number of Bits)</label>
+                <md-select ng-model="settings.nbits">
+                  <md-option value="512" class="md-primary">512</md-option>
+                  <md-option value="1024">1024 </md-option>
+                  <md-option value="2048">2048 </md-option>
+                  <md-option value="4096">4096 </md-option>
+                  <md-option value="8192">8192 </md-option>
+                </md-select>
+              </md-input-container>
+            </div>
+            <md-input-container flex="100">
+              <label>Message</label>
+              <textarea data-ng-model="record.message" rows="3" md-maxlength="150"></textarea>
+            </md-input-container>
+
+            <md-input-container flex>
+              <label>Password</label>
+              <input required data-ng-model="record.passphrase">
+              <div ng-messages="record.passphrase.$error">
+                <div ng-show="record.passphrase.$error" ng-message="required">This is required.</div>
+                <!-- <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div> -->
+              </div>
+            </md-input-container>
+
+         <div >
+          <label>Message Can be Read For {{settings.duration}} Days</label>
+          <md-input-container flex>
+
+            <md-slider class="md-warn" md-discrete ng-model="settings.duration" step="1" min="0" max="7" aria-label="rating">
+          </md-slider>
+          </md-input-container>
+        </div>
+          </div>
+        <!-- <div layout="column" flex="5" class="left-divider"></div> -->
+        <div layout="column" flex="40" class="pup pad">
+         <!--  <div>
+            <md-input-container flex>
+
+            </md-input-container>
+          </div> -->
+          <div >
+            <label> Cipher Text</label>
+            <md-input-container flex>
+
+              <div style="word-wrap: break-word;">{{record.encrypted}}</div>
+            </md-input-container>
+          </div>
+        </div>
+      <!-- <button ng-click="encrypt"></button> -->
+      </md-content>
+    </form>
+    <md-toolbar class="mt deep-purple lighten-2">
+      <div class="md-toolbar-tools">
+        <h2 class="md-flex">Encryption Options</h2>
+      </div>
+    </md-toolbar>
+    <form class="md-whiteframe-8dp"  >
+
+
+       <md-content layout="row" flex="100" md-theme="docs-dark" class="pup" layout-padding layout-align="space-around start">
+
+
+
+        <div layout="column" class="pup pad right-divide" flex="55">
+            <md-input-container flex>
+              <label>Encrypted Message</label>
+              <textarea data-ng-model="record.cipher" rows="3" md-maxlength="150"></textarea>
+            </md-input-container>
+
+            <md-input-container flex>
+              <label>Key</label>
+              <input required data-ng-model="record.passphrase">
+              <div ng-messages="record.passphrase.$error">
+                <div ng-show="record.passphrase.$error" ng-message="required">This is required.</div>
+                <!-- <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div> -->
+              </div>
+            </md-input-container>
+
+         <!-- <div > -->
+
+        </div>
+        <!-- <div layout="column" flex="5" class="left-divider"></div> -->
+        <div layout="column" flex="40" class="pup pad">
+         <!--  <div>
+            <md-input-container flex>
+
+            </md-input-container>
+          </div> -->
+          <div >
+            <label> Decrypted Text</label>
+            <md-input-container flex>
+
+              <div style="word-wrap: break-word;">{{record.decrypted}}</div>
+            </md-input-container>
+          </div>
+        </div>
+      </div>
+      </md-content>
+    </form>
+</div>
